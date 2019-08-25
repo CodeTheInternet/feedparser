@@ -134,3 +134,13 @@ class Namespace(object):
         self._end_name()
         self.incontributor = 0
 
+    def _start_dc_identifier(self, attrsD):
+        self.inidentifier = 1
+        context = self._getContext()
+        context.setdefault('identifiers', [])
+        context['identifiers'].append(FeedParserDict())
+        self.push('name', 0)
+
+    def _end_dc_identifier(self):
+        self._end_name()
+        self.inidentifier = 0
